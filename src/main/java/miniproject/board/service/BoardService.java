@@ -2,6 +2,8 @@ package miniproject.board.service;
 
 import miniproject.board.domain.Board;
 import miniproject.board.repository.SpringDataJpaBoardRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +16,7 @@ public class BoardService {
 
     private final SpringDataJpaBoardRepository boardRepository;
 
+    @Autowired
     public BoardService(SpringDataJpaBoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }
