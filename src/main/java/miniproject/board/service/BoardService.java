@@ -3,12 +3,10 @@ package miniproject.board.service;
 import miniproject.board.domain.Board;
 import miniproject.board.repository.SpringDataJpaBoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -21,9 +19,8 @@ public class BoardService {
         this.boardRepository = boardRepository;
     }
 
-    public Long saveBoard(Board board) {
+    public void saveBoard(Board board) {
         boardRepository.save(board);
-        return board.getId();
     }
 
 //    public Optional<Board> showBoardById(Long id) {
