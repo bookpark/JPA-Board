@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -41,6 +43,28 @@ public class BoardController {
     public String boardWritePost(Board board) {
         service.saveBoard(board);
         return "redirect:/board-list";
+    }
+
+    @GetMapping("/board/{id}")
+    public String showBoard(@PathVariable("id") Long id, Model model) {
+        Board board = service.showBoardById(id);
+        model.addAttribute("board", board);
+        return "board-detail";
+    }
+
+    @PostMapping("/board-update/{id}")
+    public String updateBoard(@PathVariable("id") Long id, BoardForm boardForm) {
+        Board board = service.showBoardById(id);
+        board.setTitle(boardForm.getTitle());
+        board.setContent(boardForm.getContent());
+        service.saveBoard(board);
+        return "redirect:/board/{id}";
+    }
+
+    @PostMapping("board-delete/{id}")
+    public void deleteBoard(@PathVariable("id") Long id) {
+        Board board = service.showBoardById(id);
+        service.deleteBoardById(id);
     }
 
 }
