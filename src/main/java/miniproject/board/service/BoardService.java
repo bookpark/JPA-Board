@@ -31,7 +31,7 @@ public class BoardService {
         return boardRepository.findById(id).get();
     }
 
-    public List<Board> showBoardList(Board board) {
+    public List<Board> showBoardList() {
         return boardRepository.findAll();
     }
 
