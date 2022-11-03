@@ -22,6 +22,11 @@ public class BoardController {
         this.service = service;
     }
 
+    @GetMapping("/")
+    public String home() {
+        return "home";
+    }
+
     @GetMapping("/board-list")
     public String boardList(Model model) {
         List<Board> boards = service.showBoardList();
@@ -52,19 +57,20 @@ public class BoardController {
         return "board-detail";
     }
 
-    @PostMapping("/board-update/{id}")
-    public String updateBoard(@PathVariable("id") Long id, BoardForm boardForm) {
+    @PostMapping("/board-update")
+    public String updateBoard(Long id, BoardForm boardForm) {
         Board board = service.showBoardById(id);
         board.setTitle(boardForm.getTitle());
         board.setContent(boardForm.getContent());
         service.saveBoard(board);
-        return "redirect:/board/{id}";
+        return "redirect:/board-list";
     }
 
-    @PostMapping("board-delete/{id}")
-    public void deleteBoard(@PathVariable("id") Long id) {
+    @PostMapping("/board-delete")
+    public String deleteBoard(Long id) {
         Board board = service.showBoardById(id);
         service.deleteBoardById(id);
+        return "redirect:/board-list";
     }
 
 }
