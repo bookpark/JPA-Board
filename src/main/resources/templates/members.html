@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>회원 목록</title>
+</head>
+<body>
+<div class="container">
+    <table>
+        <thead>
+        <th>#</th>
+        <th>이름</th>
+        <th>전화번호</th>
+        <th>이메일</th>
+        <th>주소</th>
+        </thead>
+        <tbody>
+        <tr th:each="member:${members}">
+            <td><a th:href="@{/member/{id}(id=${member.id})}" th:text="${member.id}"></a></td>
+            <td th:text="${member.name}"></td>
+            <td th:text="${member.phone}"></td>
+            <td th:text="${member.email}"></td>
+            <td th:text="${member.address}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
