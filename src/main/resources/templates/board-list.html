@@ -22,5 +22,10 @@
     </tr>
     </tbody>
 </table>
+<hr>
+<th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+    <a th:if="${page != currentPage}" th:href="@{/board-list/(page=${page-1})}" th:text="${page}"</a>
+    <strong th:if="${page == currentPage}" th:text="${page}"></strong>
+</th:block>
 </body>
 </html>

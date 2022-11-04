@@ -3,6 +3,8 @@ package miniproject.board.service;
 import miniproject.board.domain.Board;
 import miniproject.board.repository.SpringDataJpaBoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,8 +33,8 @@ public class BoardService {
         return boardRepository.findById(id).get();
     }
 
-    public List<Board> showBoardList() {
-        return boardRepository.findAll();
+    public Page<Board> showBoardList(Pageable pageable) {
+        return boardRepository.findAll(pageable);
     }
 
     public void deleteBoardById(Long id) {
