@@ -25,6 +25,11 @@ public class MemberController {
         this.service = service;
     }
 
+    @GetMapping("/member-home")
+    public String memberHome() {
+        return "member-home";
+    }
+
     @GetMapping("/signup")
     public String join() {
         return "signup";
@@ -38,7 +43,7 @@ public class MemberController {
         member.setEmail(form.getEmail());
         member.setAddress(form.getAddress());
         service.memberJoin(member);
-        return "redirect:/";
+        return "redirect:/members";
     }
 
     @GetMapping("/members")
