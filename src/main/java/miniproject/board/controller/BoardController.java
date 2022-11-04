@@ -71,12 +71,15 @@ public class BoardController {
     }
 
     @PostMapping("/board-update")
-    public String updateBoard(Long id, BoardForm boardForm) {
+    public String updateBoard(Long id, BoardForm boardForm, Model model) {
         Board board = service.showBoardById(id);
         board.setTitle(boardForm.getTitle());
         board.setContent(boardForm.getContent());
         service.saveBoard(board);
-        return "redirect:/board-list";
+
+        model.addAttribute("message", "성공적으로 수정하였습니다.");
+        model.addAttribute("redirectUri", "/board-list");
+        return "message-redirect";
     }
 
     @PostMapping("/board-delete")
